@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مؤسسة قناص المحترف — إرسال العقد</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Tajawal',sans-serif;background:#f4f3ef;color:#111;direction:rtl;min-height:100vh;}
+
+/* ── ADMIN ── */
+.header{background:#fff;border-bottom:1px solid #e5e3dc;padding:1rem 1.5rem;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;}
+.logo{width:46px;height:46px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:800;flex-shrink:0;}
+.logo-txt h1{font-size:15px;font-weight:700;}
+.logo-txt p{font-size:12px;color:#888;margin-top:1px;}
+.wrap{max-width:680px;margin:0 auto;padding:1.5rem;}
+.card{background:#fff;border:1px solid #e5e3dc;border-radius:14px;padding:1.5rem;margin-bottom:1rem;}
+.card-title{font-size:14px;font-weight:700;color:#1D9E75;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid #f0ede6;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg.full{grid-column:1/-1;}
+label{font-size:12px;color:#666;font-weight:600;}
+input,textarea{border:1px solid #ddd;border-radius:8px;padding:9px 12px;font-size:14px;font-family:'Tajawal',sans-serif;background:#fff;color:#111;width:100%;transition:border .15s;}
+input:focus,textarea:focus{outline:none;border-color:#1D9E75;}
+input[readonly]{background:#f4f3ef;color:#888;}
+textarea{resize:vertical;line-height:1.6;}
+.phone-wrap{display:flex;gap:6px;}
+.phone-prefix{background:#f4f3ef;border:1px solid #ddd;border-radius:8px;padding:9px 12px;font-size:14px;color:#555;font-family:'Tajawal',sans-serif;white-space:nowrap;flex-shrink:0;}
+.btn{padding:10px 20px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Tajawal',sans-serif;border:1px solid #ddd;background:#fff;color:#333;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.btn:hover{background:#f4f3ef;}
+.btn.green{background:#1D9E75;color:#fff;border-color:#1D9E75;}
+.btn.green:hover{background:#0F6E56;}
+.btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:1rem;flex-wrap:wrap;}
+.alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;}
+.alert.ok{background:#EAF3DE;color:#27500A;border:1px solid #97C459;}
+.alert.err{background:#FCEBEB;color:#791F1F;border:1px solid #F09595;}
+.wa-screen{background:#e5ddd5;border-radius:14px;padding:1rem;margin-bottom:1rem;}
+.wa-screen-label{font-size:11px;color:#555;font-weight:700;margin-bottom:10px;}
+.wa-bubble{background:#fff;border-radius:4px 14px 14px 14px;padding:12px 14px;font-size:13px;line-height:2;color:#111;white-space:pre-wrap;box-shadow:0 1px 3px rgba(0,0,0,.1);direction:rtl;max-height:340px;overflow-y:auto;}
+.wa-send-btn{background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-top:8px;}
+.wa-send-btn:hover{background:#1ebe5a;transform:translateY(-1px);}
+.how-box{background:#f9fdf9;border:1px solid #b5e8d5;border-radius:12px;padding:1rem 1.25rem;margin-top:1rem;}
+.how-box .h-title{font-size:13px;font-weight:700;color:#085041;margin-bottom:10px;}
+.how-row{display:flex;gap:10px;align-items:flex-start;padding:4px 0;font-size:13px;color:#333;line-height:1.8;}
+
+/* ── CLIENT PAGE ── */
+#page-client{display:none;}
+.client-hero{background:#1D9E75;color:#fff;padding:2rem 1.5rem;text-align:center;}
+.client-hero .hero-logo{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;margin:0 auto 12px;}
+.client-hero h2{font-size:19px;font-weight:700;}
+.client-hero p{font-size:13px;opacity:.8;margin-top:4px;}
+.contract-wrap{max-width:680px;margin:0 auto;}
+.cs{background:#fff;padding:1rem 1.5rem;border-bottom:1px solid #f0ede6;}
+.cs-label{font-size:11px;color:#1D9E75;font-weight:700;letter-spacing:.4px;margin-bottom:8px;}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.cs-field{background:#f9f8f5;border-radius:8px;padding:8px 12px;}
+.cs-field .fl{font-size:11px;color:#999;}
+.cs-field .fv{font-size:14px;font-weight:600;color:#111;margin-top:1px;}
+.money-box{background:#f0fbf6;border:1px solid #b5e8d5;border-radius:10px;padding:12px 16px;}
+.money-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #d4f0e5;font-size:14px;}
+.money-row:last-child{border-bottom:none;font-weight:700;font-size:15px;color:#085041;}
+.money-row .ml{color:#555;}
+.terms-ol{list-style:none;}
+.terms-ol li{display:flex;gap:9px;padding:7px 0;font-size:13px;color:#333;line-height:1.7;border-bottom:1px dashed #eee;}
+.terms-ol li:last-child{border-bottom:none;}
+.tn{background:#1D9E75;color:#fff;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:3px;}
+
+/* ── AGREE SECTION ── */
+.agree-section{background:#fff;max-width:680px;margin:0 auto;padding:1.5rem;}
+.agree-note{font-size:13px;color:#555;line-height:1.9;margin-bottom:1.25rem;text-align:center;}
+.agree-check-wrap{display:flex;align-items:flex-start;gap:10px;background:#f9fdf9;border:1px solid #b5e8d5;border-radius:10px;padding:12px 14px;margin-bottom:1.25rem;cursor:pointer;}
+.agree-check-wrap input[type=checkbox]{width:20px;height:20px;accent-color:#1D9E75;flex-shrink:0;margin-top:2px;cursor:pointer;}
+.agree-check-label{font-size:13px;color:#222;line-height:1.7;cursor:pointer;}
+.agree-btn{background:#1D9E75;color:#fff;border:none;border-radius:12px;padding:15px;font-size:17px;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;opacity:.4;pointer-events:none;}
+.agree-btn.enabled{opacity:1;pointer-events:all;}
+.agree-btn.enabled:hover{background:#0F6E56;transform:translateY(-1px);}
+.confirmed-box{background:#EAF3DE;border:1.5px solid #97C459;border-radius:14px;padding:2rem;text-align:center;margin:1rem;}
+.confirmed-box .ck{font-size:56px;margin-bottom:10px;}
+.confirmed-box h3{font-size:19px;font-weight:700;color:#27500A;}
+.confirmed-box p{font-size:13px;color:#3B6D11;margin-top:8px;line-height:1.8;}
+
+@media(max-width:480px){
+  .form-grid,.cs-grid{grid-template-columns:1fr;}
+  .phone-wrap{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ CLIENT PAGE ══════════ -->
+<div id="page-client">
+  <div class="client-hero">
+    <div class="hero-logo">Q</div>
+    <h2>مؤسسة قناص المحترف للإنتاج المرئي والمسموع</h2>
+    <p id="c-subtitle">عقد تصوير مناسبة زواج</p>
+  </div>
+
+  <div class="contract-wrap">
+    <div class="cs">
+      <div class="cs-label">تفاصيل المناسبة</div>
+      <div class="cs-grid">
+        <div class="cs-field"><div class="fl">العريس</div><div class="fv" id="c-groom">—</div></div>
+        <div class="cs-field"><div class="fl">تاريخ المناسبة</div><div class="fv" id="c-date">—</div></div>
+        <div class="cs-field"><div class="fl">موعد التصوير</div><div class="fv" id="c-time">—</div></div>
+        <div class="cs-field"><div class="fl">مكان المناسبة</div><div class="fv" id="c-venue">—</div></div>
+        <div class="cs-field" style="grid-column:1/-1"><div class="fl">نوع الخدمة</div><div class="fv" id="c-service">—</div></div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-label">التفاصيل المالية</div>
+      <div class="money-box">
+        <div class="money-row"><span class="ml">إجمالي قيمة العقد</span><span id="c-total" style="font-weight:600">—</span></div>
+        <div class="money-row"><span class="ml">العربون لتأكيد الحجز</span><span style="color:#1D9E75;font-weight:700">1,000 ريال سعودي</span></div>
+        <div class="money-row"><span class="ml">المبلغ المتبقي</span><span id="c-remaining">—</span></div>
+      </div>
+    </div>
+
+    <div id="c-notes-wrap" class="cs" style="display:none">
+      <div class="cs-label">ملاحظات</div>
+      <div style="background:#fffbf0;border:1px solid #FAC775;border-radius:8px;padding:10px 14px;font-size:14px;color:#444;line-height:1.8" id="c-notes"></div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-label">الشروط والأحكام</div>
+      <ol class="terms-ol">
+        <li><div class="tn">1</div>يُعدّ هذا العقد ساريًا بعد سداد العربون البالغ 1,000 ريال وموافقة الطرفين على بنوده كافة.</li>
+        <li><div class="tn">2</div>العربون المدفوع غير قابل للاسترداد في حال الإلغاء من قِبَل العميل.</li>
+        <li><div class="tn">3</div>في حال الإلغاء قبل أسبوعين أو أكثر، يحق للعميل تأجيل الحجز لتاريخ آخر مع الاحتفاظ بالعربون.</li>
+        <li><div class="tn">4</div>تلتزم المؤسسة بالحضور في الوقت والمكان المحددين مع توفير طاقم تصوير متكامل ومعدات احترافية.</li>
+        <li><div class="tn">5</div>يُسلَّم الألبوم الفوتوغرافي خلال 30 يوم عمل، والفيديو خلال 45 يوم عمل من تاريخ المناسبة.</li>
+        <li><div class="tn">6</div>تحتفظ المؤسسة بحق استخدام الصور لأغراض الترويج ما لم يطلب العميل خلاف ذلك كتابيًا.</li>
+        <li><div class="tn">7</div>يُسدَّد المبلغ المتبقي قبل يوم واحد من المناسبة أو في بدايتها، ولا يُبدأ العمل دون استيفائه.</li>
+        <li><div class="tn">8</div>لا تتحمل المؤسسة مسؤولية الظروف القاهرة كالكوارث الطبيعية والطوارئ الأمنية.</li>
+        <li><div class="tn">9</div>في حال خلل تقني يؤثر على الجودة، تلتزم المؤسسة بتعويض مناسب يتفق عليه الطرفان.</li>
+        <li><div class="tn">10</div>يخضع هذا العقد لأحكام نظام العقود في المملكة العربية السعودية، وتختص محاكم الدمام بالنظر في أي نزاع.</li>
+        <li><div class="tn">11</div>أي تعديل على بنود العقد يستوجب اتفاقًا خطيًا موقعًا من الطرفين.</li>
+        <li><div class="tn">12</div>بالموافقة يُقرّ العميل بقراءة جميع البنود وفهمها والالتزام بها كاملةً.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- AGREE -->
+  <div class="agree-section">
+    <div id="agree-form">
+      <p class="agree-note">يرجى قراءة العقد والشروط كاملةً قبل الموافقة</p>
+      <label class="agree-check-wrap">
+        <input type="checkbox" id="chk" onchange="toggleBtn()"/>
+        <span class="agree-check-label">اطلعت على جميع بنود العقد والشروط والأحكام الواردة أعلاه وأوافق عليها كاملةً</span>
+      </label>
+      <button class="agree-btn" id="agree-btn" onclick="clientAgree()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        أوافق على العقد — إرسال الموافقة
+      </button>
+    </div>
+    <div id="agree-done" style="display:none">
+      <div class="confirmed-box">
+        <div class="ck">✅</div>
+        <h3>تمت الموافقة على العقد</h3>
+        <p>شكرًا! تم فتح واتساب برسالة الموافقة.<br>أرسلها وسيتواصل معك فريق قناص المحترف لاستكمال الحجز وسداد العربون.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN PAGE ══════════ -->
+<div id="page-admin">
+  <div class="header">
+    <div class="logo">Q</div>
+    <div class="logo-txt">
+      <h1>مؤسسة قناص المحترف للإنتاج المرئي والمسموع</h1>
+      <p>إرسال عقود التصوير عبر الواتساب</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div id="admin-alert"></div>
+
+    <div id="s-form">
+      <div class="card">
+        <div class="card-title">بيانات العميل والمناسبة</div>
+        <div class="form-grid">
+          <div class="fg"><label>اسم العريس *</label><input id="a-groom" placeholder="محمد عبدالله الأحمد"/></div>
+          <div class="fg">
+            <label>رقم واتساب العميل *</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix">+966</span>
+              <input id="a-phone" placeholder="5XXXXXXXX" maxlength="9"/>
+            </div>
+          </div>
+          <div class="fg"><label>تاريخ المناسبة *</label><input id="a-date" type="date"/></div>
+          <div class="fg"><label>موعد التصوير *</label><input id="a-time" placeholder="يوم الخميس ليلة الجمعة"/></div>
+          <div class="fg full"><label>مكان المناسبة *</label><input id="a-venue" placeholder="قاعة الأفراح — الدمام"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">تفاصيل الخدمة والمالية</div>
+        <div class="form-grid">
+          <div class="fg full"><label>نوع الخدمة *</label><input id="a-service" placeholder="مثال: تصوير فوتوغرافي + فيديو كليب + ريلز"/></div>
+          <div class="fg"><label>مدة التصوير (ساعات)</label><input id="a-hours" type="number" placeholder="6" min="1"/></div>
+          <div class="fg"><label>إجمالي المبلغ (ريال) *</label><input id="a-total" type="number" placeholder="3000"/></div>
+          <div class="fg"><label>العربون المطلوب</label><input value="1,000 ريال سعودي" readonly/></div>
+          <div class="fg full"><label>ملاحظات خاصة (اختياري)</label><textarea id="a-notes" placeholder="أي تفاصيل أو طلبات خاصة..." style="min-height:60px"></textarea></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" onclick="clearForm()">مسح</button>
+        <button class="btn green" onclick="buildPreview()">معاينة الرسالة ←</button>
+      </div>
+    </div>
+
+    <div id="s-preview" style="display:none">
+      <div class="card">
+        <div class="card-title">معاينة رسالة الواتساب للعميل</div>
+        <div class="wa-screen">
+          <div class="wa-screen-label">📱 ما سيستلمه العميل:</div>
+          <div class="wa-bubble" id="msg-preview"></div>
+        </div>
+        <button class="wa-send-btn" onclick="sendWA()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          إرسال الرسالة للعميل عبر واتساب
+        </button>
+      </div>
+
+      <div class="how-box">
+        <div class="h-title">بعد الإرسال — ماذا يحدث؟</div>
+        <div class="how-row">1️⃣ العميل يستلم رسالة واتساب فيها رابط العقد</div>
+        <div class="how-row">2️⃣ يفتح الرابط ويقرأ العقد والشروط كاملةً</div>
+        <div class="how-row">3️⃣ يضع علامة ✓ "اطلعت وأوافق" ثم يضغط زر الموافقة</div>
+        <div class="how-row">4️⃣ يفتح واتساب عنده تلقائيًا برسالة موافقة — يضغط إرسال ✅</div>
+        <div class="how-row">5️⃣ تصلك الموافقة — تؤكد الحجز وتطلب العربون</div>
+      </div>
+
+      <div style="text-align:center;margin-top:1rem;">
+        <button class="btn" onclick="backToForm()">← تعديل البيانات</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── HELPERS ───
+function v(id){ return (document.getElementById(id)?.value||'').trim(); }
+function formatDateAr(d){
+  if(!d) return '—';
+  const months=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  const p=d.split('-');
+  return parseInt(p[2])+' '+months[parseInt(p[1])-1]+' '+p[0];
+}
+
+// ─── ADMIN ───
+let _phone='', _clientData={};
+
+function clearForm(){
+  ['a-groom','a-phone','a-date','a-time','a-venue','a-service','a-hours','a-total','a-notes'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  document.getElementById('admin-alert').innerHTML='';
+}
+
+function buildWAMsg(d){
+  // رسالة واتساب مختصرة + رابط صفحة العقد
+  const params=new URLSearchParams({
+    c:'1',g:d.g,date:d.date,ti:d.ti,ve:d.ve,sv:d.sv,hr:d.hr,tot:d.tot,no:d.no,ph:d.ph
+  });
+  const link = window.location.href.split('?')[0]+'?'+params.toString();
+  const remaining=(Number(d.tot)-1000).toLocaleString('ar-SA');
+  return `السلام عليكم ${d.g} 🎉
+
+نشكر ثقتكم بمؤسسة *قناص المحترف للإنتاج المرئي والمسموع*
+
+فيما يلي ملخص عقد تصوير مناسبتكم:
+
+📋 *تفاصيل العقد*
+• العريس: ${d.g}
+• تاريخ المناسبة: ${formatDateAr(d.date)}
+• موعد التصوير: ${d.ti}
+• المكان: ${d.ve}
+• الخدمة: ${d.sv}
+• إجمالي المبلغ: ${Number(d.tot).toLocaleString('ar-SA')} ريال سعودي
+• العربون: *1,000 ريال سعودي*
+• المتبقي: ${remaining} ريال سعودي
+
+━━━━━━━━━━━━━━━
+👇 *لمراجعة العقد كاملاً مع الشروط والموافقة عليه، اضغط الرابط:*
+
+${link}
+
+_مؤسسة قناص المحترف للإنتاج المرئي والمسموع_`;
+}
+
+function buildPreview(){
+  const g=v('a-groom'),ph=v('a-phone'),date=v('a-date'),ti=v('a-time'),ve=v('a-venue'),sv=v('a-service'),tot=v('a-total');
+  const al=document.getElementById('admin-alert');
+  if(!g||!ph||!date||!ti||!ve||!sv||!tot){
+    al.innerHTML='<div class="alert err">يرجى تعبئة جميع الحقول المطلوبة *</div>';
+    return;
+  }
+  al.innerHTML='';
+  _clientData={g,ph,date,ti,ve,sv,hr:v('a-hours'),tot,no:v('a-notes')};
+  _phone='966'+ph.replace(/^0/,'');
+  document.getElementById('msg-preview').textContent=buildWAMsg(_clientData);
+  document.getElementById('s-form').style.display='none';
+  document.getElementById('s-preview').style.display='';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function sendWA(){
+  const text=document.getElementById('msg-preview').textContent;
+  window.open('https://wa.me/'+_phone+'?text='+encodeURIComponent(text),'_blank');
+  document.getElementById('admin-alert').innerHTML='<div class="alert ok">✅ تم فتح واتساب — أرسل الرسالة للعميل</div>';
+}
+
+function backToForm(){
+  document.getElementById('s-form').style.display='';
+  document.getElementById('s-preview').style.display='none';
+  document.getElementById('admin-alert').innerHTML='';
+}
+
+// ─── CLIENT ───
+function toggleBtn(){
+  const chk=document.getElementById('chk');
+  const btn=document.getElementById('agree-btn');
+  btn.classList.toggle('enabled', chk.checked);
+}
+
+function clientAgree(){
+  if(!document.getElementById('chk').checked) return;
+  const p=new URLSearchParams(window.location.search);
+  const g=p.get('g')||'العميل';
+  const date=p.get('date')||'';
+  const ve=p.get('ve')||'';
+  const sv=p.get('sv')||'';
+  const tot=p.get('tot')||'0';
+  const ph=p.get('ph')||'';
+  const msg=`✅ *موافقة على عقد التصوير*
+
+أنا ${g}، أفيد بموافقتي الكاملة على عقد تصوير مناسبة زواجي:
+
+• تاريخ المناسبة: ${formatDateAr(date)}
+• المكان: ${ve}
+• الخدمة: ${sv}
+• إجمالي المبلغ: ${Number(tot).toLocaleString('ar-SA')} ريال سعودي
+
+وافقت على جميع الشروط والأحكام المُدرجة في العقد، وأرجو التواصل لاستكمال الحجز وسداد العربون. 🤝`;
+
+  const studioPhone='966'+ph.replace(/^0/,'');
+  window.open('https://wa.me/'+studioPhone+'?text='+encodeURIComponent(msg),'_blank');
+  document.getElementById('agree-form').style.display='none';
+  document.getElementById('agree-done').style.display='';
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+
+// ─── INIT ───
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('c')==='1'){
+    // show client page
+    document.getElementById('page-admin').style.display='none';
+    document.getElementById('page-client').style.display='';
+    const g=params.get('g')||'—';
+    const date=params.get('date')||'';
+    const ti=params.get('ti')||'—';
+    const ve=params.get('ve')||'—';
+    const sv=params.get('sv')||'—';
+    const tot=params.get('tot')||'0';
+    const no=params.get('no')||'';
+    document.getElementById('c-groom').textContent=g;
+    document.getElementById('c-date').textContent=formatDateAr(date);
+    document.getElementById('c-time').textContent=ti;
+    document.getElementById('c-venue').textContent=ve;
+    document.getElementById('c-service').textContent=sv;
+    document.getElementById('c-total').textContent=Number(tot).toLocaleString('ar-SA')+' ريال سعودي';
+    document.getElementById('c-remaining').textContent=(Number(tot)-1000).toLocaleString('ar-SA')+' ريال سعودي';
+    document.getElementById('c-subtitle').textContent='عقد تصوير زواج — '+g;
+    if(no){ document.getElementById('c-notes').textContent=no; document.getElementById('c-notes-wrap').style.display=''; }
+  }
+})();
+</script>
+</body>
+</html>
